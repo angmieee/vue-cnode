@@ -8,9 +8,13 @@
                     </router-link>
                 </div>
                 <ul class="nav">
-                    <li><a href="/">首页</a></li>
                     <li>
-                        <router-link :to="{ name:'get_start' }">
+                        <router-link :to="{ name: 'root' }">
+                            <span>首页</span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'get_start' }">
                             <span>新手入门</span>
                         </router-link>
                     </li>
