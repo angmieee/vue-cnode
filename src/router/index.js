@@ -14,29 +14,29 @@ export default new Router({
             name: 'root',
             path: '/',
             components:{
-                main:MainPanel
+                main: MainPanel
             }
         },
         {
             name: 'post_content',
             path: '/topic/:id&:name',
             components:{
-                main:Article,
-                slidebar:SlideBar
+                main: Article,
+                slidebar: SlideBar
             }
         },
         {
             name: 'user_info',
             path: '/user_info/:name',
             components:{
-                main:UserInfo
+                main: UserInfo
             }
         },
         {
             name: 'get_start',
             path: '/getstart/',
             components:{
-                main:GetStart
+                main: GetStart
             }
         }
     ]
