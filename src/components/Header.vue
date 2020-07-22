@@ -34,53 +34,46 @@
     }
 </script>
 
-<style scoped>
-    .navbar_wrapper {
-        width: 90%;
-        min-width: 960px;
-        margin: 0 auto;
-        padding: 5px;
-    }
-
-    .navbar {
-        width: 100%;
-        min-width: 960px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
+<style lang="less" scoped>
     .header {
         background: #444444;
         height: 50px;
-    }
-
-    .navbar .brand {
-        width: 120px;
-        padding: 3px 20px;
-        height: 34px;
-        line-height: 34px;
-        color: #ccc;
-        font-weight: 700;
-    }
-
-    .navbar .nav {
-        list-style: none;
-    }
-
-    .navbar .nav li {
-        display: inline-block;
-        padding: 10px 15px;
-    }
-
-    .navbar .nav a {
-        text-decoration: none;
-        color: #cccccc;
-        font-size: 13px;
-        text-shadow: none;
-    }
-
-    .navbar .nav a:hover {
-        color: white;
+        .navbar_wrapper {
+            width: 90%;
+            min-width: 960px;
+            margin: 0 auto;
+            padding: 5px;
+            .navbar {
+                width: 100%;
+                min-width: 960px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .brand {
+                    width: 120px;
+                    padding: 3px 20px;
+                    height: 34px;
+                    line-height: 34px;
+                    color: #ccc;
+                    font-weight: 700;
+                }
+                .nav {
+                    list-style: none;
+                    li {
+                        display: inline-block;
+                        padding: 10px 15px;
+                    }
+                    a {
+                        text-decoration: none;
+                        color: #cccccc;
+                        font-size: 13px;
+                        text-shadow: none;
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
     }
 </style>
