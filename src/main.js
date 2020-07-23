@@ -2,14 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import Axios from 'axios'
 import router from './router/index'
-import { Pagination } from 'element-ui'
+import { Button, Pagination, Dialog } from 'element-ui'
 import {showLoading, hideLoading} from './utils/loading';
 
 Vue.prototype.$http = Axios
 Vue.config.productionTip = false
 
-Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
+Vue.prototype.$ELEMENT = { size: 'normal', zIndex: 3000 };
 Vue.use(Pagination);
+Vue.use(Button);
+Vue.use(Dialog)
 
 Vue.prototype.$showLoading = showLoading
 Vue.prototype.$hideLoading = hideLoading

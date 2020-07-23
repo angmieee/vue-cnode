@@ -18,16 +18,45 @@
                             <span>新手入门</span>
                         </router-link>
                     </li>
-                    <li><a href="#">关于</a></li>
+                    <li><a href="#" @click="dialogVisible = true">关于</a></li>
                 </ul>
             </div>
+            <el-dialog
+                    title="关于本项目"
+                    class="dialog"
+                    :visible.sync="dialogVisible"
+                    width="30%"
+                    :before-close="handleClose">
+                <p>作者：<span class="blue">MJ Huang</span></p>
+                <p>源码：<a href="https://github.com/angmieee/vue-cnode" class="blue">✨ CnodeVue ✨</a></p>
+                <p>技术栈：</p>
+                <ul>
+                    <li>Vue</li>
+                    <li>Vue Router</li>
+                    <li>Element UI</li>
+                    <li>Axios</li>
+                </ul>
+                <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="dialogVisible = false"><span>确 定</span></el-button>
+                </span>
+            </el-dialog>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Header"
+        name: "Header",
+        data(){
+            return {
+                dialogVisible: false
+            }
+        },
+        methods: {
+            handleClose(done) {
+                done()
+            }
+        }
     }
 </script>
 
@@ -69,6 +98,30 @@
                             color: white;
                         }
                     }
+                }
+            }
+            .dialog {
+                p {
+                    font-size: 16px;
+                    margin-bottom: 4px;
+                    a {
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                    .blue {
+                        color: #409EFF;
+                        font-weight: bold;
+                    }
+                }
+                ul {
+                    padding-left: 30px;
+                    padding-top: 10px;
+                    li {
+                        margin-bottom: 4px;
+                    }
+                }
+                .dialog-footer {
+                    font-size: 16px;
                 }
             }
         }
