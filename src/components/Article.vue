@@ -8,12 +8,14 @@
                 <div v-else>
                     <div class="topic_header">
                         <div class="topic_title">{{ post.title }}</div>
-                        <ul>
-                            <li><span class="spot">&bull;</span>发布于&nbsp;{{ post.create_at | formatDate }}</li>
-                            <li><span class="spot">&bull;</span>作者&nbsp;{{ post.author.loginname }}</li>
-                            <li><span class="spot">&bull;</span>{{ post.visit_count }}&nbsp;次浏览</li>
-                            <li><span class="spot">&bull;</span>来自&nbsp;{{ post | tabFormatter }}</li>
-                        </ul>
+                        <div class="topic_describe">
+                            <ul>
+                                <li><span class="spot">&bull;</span>发布于&nbsp;{{ post.create_at | formatDate }}</li>
+                                <li><span class="spot">&bull;</span>作者&nbsp;{{ post.author.loginname }}</li>
+                                <li><span class="spot">&bull;</span>{{ post.visit_count }}&nbsp;次浏览</li>
+                                <li><span class="spot">&bull;</span>来自&nbsp;{{ post | tabFormatter }}</li>
+                            </ul>
+                        </div>
                         <div v-html="post.content" class="topic_content markdown-body"></div>
                     </div>
                     <div id="reply">
@@ -26,7 +28,7 @@
                                         name:reply.author.loginname
                                     }
                                 }">
-                                    <img :src="reply.author.avatar_url" alt="">
+                                    <img :src="reply.author.avatar_url" :alt="reply.author.loginname">
                                 </router-link>
                                 <router-link :to="{
                                     name:'user_info',
@@ -42,7 +44,7 @@
                                 <span v-if="reply.ups.length>0">&nbsp;☝&nbsp;{{ reply.ups.length }}
                                 </span>
                                 <span v-else>
-                            </span>
+                                </span>
                             </div>
                             <p class="reply_content" v-html="reply.content"></p>
                         </div>
@@ -86,109 +88,102 @@
     }
 </script>
 
-<style scoped>
+<style lang="less">
     @import "~github-markdown-css";
 
     .article{
         max-width: 70%;
         min-width: 960px;
+        .article_content_wrapper{
+            .article_content{
+                .topic_header{
+                    border-radius: 3px;
+                    padding: 10px;
+                    background-color: #fff;
+                    ul {
+
+                        padding: 0px 0px;
+                        margin: 6px 0px;
+                    }
+                    li {
+
+                        font-size: 12px;
+                        color: #838383;
+                    }
+                    .topic_title {
+                        font-size: 22px;
+                        font-weight: bold;
+                        padding-top: 8px;
+                        .spot{
+                            padding: 0 5px;
+                        }
+                    }
+                    .topic_describe {
+                        ul {
+                            list-style: none;
+                        }
+                        li {
+                            display: inline-block;
+                        }
+                    }
+                    .topic_content {
+                        border-top: 1px solid #e5e5e5;
+                        padding: 10px 10px 0 10px;
+                        ul {
+                            margin-left: 25px;
+                        }
+                        .markdown-text {
+                            li {
+                                font-size: 14px;
+                            }
+
+                        }
+                    }
+                }
+                #reply {
+                    margin-top: 15px;
+                    border-radius: 3px;
+                    background-color: #fff;
+                    a, span {
+                        font-size: 13px;
+                        color: #666;
+                        text-decoration: none;
+                    }
+                    .topbar {
+                        padding: 10px;
+                        background-color: #f6f6f6;
+                        height: 16px;
+                        font-size: 12px;
+                        margin-top: 10px;
+                    }
+                    .replySec {
+                        border-bottom: 1px solid #e5e5e5;
+                        padding: 10px;
+                        a {
+                            color: #094E99;
+                            text-decoration: none;
+                        }
+                        .replyUp {
+                            display: flex;
+                            align-items: start;
+                            span {
+                                padding-left: 10px;
+                            }
+                            img {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                        .reply_content {
+                            padding: 0 0 15px 50px;
+                        }
+                    }
+                }
+            }
+        }
     }
-
-    .article_content_wrapper{
-
-    }
-
-    .article_content{
-
-    }
-
-    .topic_header{
-        border-radius: 3px;
-    }
-
-    .spot{
-        padding: 0 5px;
-    }
-
-    .topbar {
-        padding: 10px;
-        background-color: #f6f6f6;
-        height: 16px;
-        font-size: 12px;
-        margin-top: 10px;
-    }
-
-    #reply, .topic_header {
-        background-color: #fff;
-    }
-
-    #reply {
-        margin-top: 15px;
-        border-radius: 3px;
-    }
-
-    #reply img {
-        width: 30px;
-        height: 30px;
-    }
-
-    #reply a, #reply span {
-        font-size: 13px;
-        color: #666;
-        text-decoration: none;
-    }
-
-    .replySec {
-        border-bottom: 1px solid #e5e5e5;
-        padding: 10px;
-    }
-
-    .replySec a {
-        color: #094E99;
-        text-decoration: none;
-    }
-
-    .replyUp {
-        display: flex;
-        align-items: start;
-    }
-
-    .replyUp span {
-        padding-left: 10px;
-    }
-
-    .reply_content {
-        padding: 0 0 15px 50px;
-    }
-
-    .topic_header {
-        padding: 10px;
-    }
-
-    .topic_title {
-        font-size: 22px;
-        font-weight: bold;
-        padding-top: 8px;
-    }
-
-    .topic_header ul {
-        list-style: none;
-        padding: 0px 0px;
-        margin: 6px 0px;
-    }
-
-    .topic_header li {
-        display: inline-block;
-        font-size: 12px;
-        color: #838383;
-    }
-
-    .topic_content {
-        border-top: 1px solid #e5e5e5;
-        padding: 0 10px;
-    }
-
     .markdown-text img {
-        width: 92% !important;
+        width: 100% !important;
+        display: block;
     }
 </style>
