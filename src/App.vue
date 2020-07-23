@@ -27,8 +27,8 @@
   }
 
   .app_main {
-    background: #e1e1e1;
-    padding: 15px 0;
+    background: white;
+    padding: 25px 0;
     display: flex;
     justify-content: center;
   }

@@ -18,7 +18,6 @@ new Vue({
 }).$mount('#app')
 
 // 过滤器
-
 Vue.filter('formatDate', function (str) {
       if (!str) return ''
       var date = new Date(str)
