@@ -26,6 +26,10 @@
     padding: 0;
   }
 
+  html {
+    overflow-y: scroll;
+  }
+
   .app_main {
     width: 1200px;
     margin: 40px auto auto;

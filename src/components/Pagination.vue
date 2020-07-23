@@ -10,7 +10,7 @@
 <!--        </button>-->
 <!--        <button @click="changeBtn">下一页</button>-->
         <el-pagination
-                background="#67C23A"
+                background
                 layout="prev, pager, next"
                 @current-change="handleCurrentChange"
                 :current-page.sync="current"
