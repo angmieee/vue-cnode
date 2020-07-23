@@ -13,7 +13,7 @@
                         <span>招聘</span>
                 </li>
                 <li class="topic_list" v-for="post in posts" :key="post.id">
-                    <img :src="post.author.avatar_url" alt="">
+                    <img :src="post.author.avatar_url" :alt="post.author.loginname">
                     <span class="reply_count_wrapper">
                         <span class="reply_count">{{ post.reply_count }}</span>/<span class="count_of_visits">{{ post.visit_count }}</span>
                     </span>
