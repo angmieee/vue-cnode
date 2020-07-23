@@ -27,13 +27,8 @@
   }
 
   .app_main {
-    background: white;
-    padding: 25px 0;
+    width: 1200px;
+    margin: 40px auto auto;
     display: flex;
-    justify-content: center;
-  }
-
-  .app_main > *:first-child {
-    margin-right: 15px;
   }
 </style>

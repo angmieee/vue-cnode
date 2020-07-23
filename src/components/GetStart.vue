@@ -72,56 +72,49 @@
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
     .get_start {
         background: white;
         width: 70%;
         min-width: 960px;
+        margin: 0 auto 40px;
         font-size: 15px;
         border-radius: 3px;
         box-shadow: 0 2px 12px 2px rgba(0,0,0,.1);
-    }
+        a {
+            color: #08c;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
 
-    .header {
-        background: #f6f6f6;
-        padding: 10px;
-        color: #999;
-        border-radius: 3px 3px 0 0;
-    }
-
-    .inner {
-        padding: 10px 10px 30px 10px;
-    }
-
-    ul {
-        list-style: none;
-    }
-
-    ul li {
-        display: flex;
-        flex-direction: column;
-    }
-
-    a {
-        color: #08c;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    span {
-        margin: 10px 10px;
-    }
-
-    h2 {
-        margin-bottom: 15px;
-        border-bottom: 1px solid #eee;
-        line-height: 40px;
-    }
-
-    .main {
-        color: #80bd01;
+        }
+        span {
+            margin: 10px 10px;
+        }
+        .header {
+            background: #f6f6f6;
+            padding: 10px;
+            color: #999;
+            border-radius: 3px 3px 0 0;
+            .main {
+                color: #80bd01;
+            }
+        }
+        .inner {
+            padding: 10px 10px 30px 10px;
+            h2 {
+                margin-bottom: 15px;
+                border-bottom: 1px solid #eee;
+                line-height: 40px;
+            }
+            ul {
+                list-style: none;
+                li {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
     }
 </style>

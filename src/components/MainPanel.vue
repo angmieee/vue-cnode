@@ -42,7 +42,6 @@
 
 <script>
     import Pagination from "../components/Pagination";
-    import {showLoading, hideLoading} from '../utils/loading';
 
     export default {
         name: "MainPanel",
@@ -64,14 +63,14 @@
                     }
                 }).then((res)=>{
                     this.posts = res.data.data
-                    hideLoading()
+                    this.$hideLoading()
                 }).catch((err)=>{
                     console.log(err)
                 })
             },
             renderList(page){
                 this.currentPage = page
-                showLoading()
+                this.$showLoading()
                 this.getPostsData()
             },
             // getAvatarsUrl(url) {
@@ -80,7 +79,7 @@
             // }
         },
         beforeCreate() {
-          showLoading()
+          this.$showLoading()
         },
         beforeMount() {
             this.getPostsData()
@@ -91,7 +90,7 @@
 <style lang="less" scoped>
     .main_panel{
         width: 90%;
-        min-width: 960px;
+        margin: 0 auto 40px;
         a {
             text-decoration: none;
             color: black;
@@ -102,8 +101,6 @@
         .topic_panel {
             ul {
                 list-style: none;
-                width: 75%;
-                max-width: 1344px;
                 margin: 0 auto;
                 box-shadow: 0 2px 12px 2px rgba(0,0,0,.1);
                 li {

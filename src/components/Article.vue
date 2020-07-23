@@ -2,10 +2,7 @@
     <div class="article">
         <div class="article_content_wrapper">
             <div class="article_content">
-                <div class="loading" v-if="isLoading">
-                    <Loader></Loader>
-                </div>
-                <div v-else>
+                <div>
                     <div class="topic_header">
                         <div class="topic_title">{{ post.title }}</div>
                         <div class="topic_describe">
@@ -60,7 +57,6 @@
         name: "Article",
         data() {
             return {
-                isLoading: false,//是否正在加载
                 post: {}//代表当前文章页的所有内容，所有属性
             }
         },
@@ -69,7 +65,7 @@
                 this.$http.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
                     .then(res => {
                         this.post = res.data.data
-                        this.isLoading = false
+                        this.$hideLoading()
                     })
                     .catch(function (err) {
                         console.log(err)
@@ -77,11 +73,12 @@
             }
         },
         beforeMount() {
-            this.isLoading = true
+            this.$showLoading()
             this.getArticleData()
         },
         watch:{
             '$route'(to,from){
+                this.$showLoading()
                 this.getArticleData()
             }
         }
@@ -92,8 +89,9 @@
     @import "~github-markdown-css";
 
     .article{
-        max-width: 70%;
-        min-width: 960px;
+        max-width: 72%;
+        margin-bottom: 40px;
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
         .article_content_wrapper{
             .article_content{
                 .topic_header{
@@ -172,6 +170,7 @@
                             img {
                                 width: 30px;
                                 height: 30px;
+                                border-radius: 50%;
                             }
                         }
                         .reply_content {

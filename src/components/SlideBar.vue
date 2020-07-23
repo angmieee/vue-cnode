@@ -11,7 +11,7 @@
                                 name: this.userinfo.loginname
                             }
                         }">
-                            <img :src="this.userinfo.avatar_url" alt="">
+                            <img :src="this.userinfo.avatar_url" :alt="this.userinfo.loginname">
                         </router-link>
                         <router-link :to="{
                                 name:'user_info',
@@ -69,7 +69,6 @@
         name: "SlideBar",
         data() {
             return {
-                isLoading: false,
                 userinfo: {}
             }
         },
@@ -77,8 +76,8 @@
             getData() {
                 this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
                     .then(res => {
-                        this.isLoading = false //加载成功，去除动画
                         this.userinfo = res.data.data
+                        this.$hideLoading()
                     })
                     .catch(function (err) {
                         //处理返回失败后的问题
@@ -98,92 +97,87 @@
                 }
             }
         },
+        beforeCreate() {
+          this.$showLoading()
+        },
         beforeMount() {
-            this.isLoading = true//加载成功之前显示加载动画
             this.getData()//在页面加载之前获取数据
         }
     }
 </script>
 
-<style scoped>
-    .author_summary, .recent_replies, .recent_topics {
-        background-color: #fff;
-    }
-
+<style lang="less" scoped>
     .slide_bar {
-        width: 20%;
-    }
-
-    li {
-        padding: 3px 0;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
-    }
-
-    .recent_replies ul, .recent_topics ul {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        list-style: none;
-        padding-left: 14px;
-    }
-
-    ul a {
-        font-size: 14px;
-    }
-
-    ul{
-        padding: 10px 0;
-    }
-
-    .topbar {
-        padding: 10px;
-        background-color: #f6f6f6;
-        height: 16px;
-        font-size: 12px;
-        margin-top: 10px;
-    }
-
-    img {
-        height: 48px;
-        width: 48px;
-        border-radius: 3px;
-    }
-
-    .inner {
-        padding: 10px;
-        font-size: 13px;
-        color: #778087;
-    }
-
-    .loginname {
-        width: 100px;
-        float: right;
-        margin-top: 22px;
-        margin-right: 159px;
-        font-size: 14px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #778087;
-    }
-
-    .author_summary .topbar {
-        margin-top: 0px;
-    }
-
-    .user_avatar {
-        display: flex;
-        align-items: center;
-    }
-
-    .user_avatar span {
-        margin-left: 10px;
-    }
-
-    .floor,
-    .signature {
-        padding: 7px 0;
+        width: 25%;
+        margin-left: 2%;
+        margin-bottom: 40px;
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+        a {
+            text-decoration: none;
+            color: #778087;
+        }
+        .author_info {
+            li {
+                padding: 3px 0;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+            }
+            ul{
+                padding: 10px 0;
+                a {
+                    font-size: 14px;
+                }
+            }
+            .topbar {
+                padding: 10px;
+                background-color: #f6f6f6;
+                height: 16px;
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            .author_summary {
+                .topbar {
+                    margin-top: 0px;
+                }
+                .inner {
+                    padding: 10px;
+                    font-size: 13px;
+                    color: #778087;
+                    .user_avatar {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            height: 48px;
+                            width: 48px;
+                            border-radius: 3px;
+                        }
+                        span {
+                            margin-left: 10px;
+                        }
+                    }
+                    .floor,
+                    .signature {
+                        padding: 7px 0;
+                    }
+                }
+            }
+            .recent_topics {
+                ul {
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    list-style: none;
+                    padding-left: 14px;
+                }
+            }
+            .recent_replies {
+                ul {
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    list-style: none;
+                    padding-left: 14px;
+                }
+            }
+        }
     }
 </style>
