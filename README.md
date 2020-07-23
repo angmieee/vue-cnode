@@ -1,8 +1,24 @@
-# Vue技术栈实现CNode.js社区
+# VueCNode.js
 
 ## 说明
 
-这个项目是我在 Vue 学习过程中的一个学习项目，我会将学习到的 Vue 相关技术不断添加到项目中，以此达到熟练运用的目的。在此期间，我会不断重构代码，使项目功能更加完善。
+> 一个 Vue 的初/中级项目：重构 CnodeJS 社区
+
+[预览](https://angmieee.github.io/vue-cnode/dist/)
+
+![预览图片](./src/assets/vue-cnode.png)
+
+## 本地运行
+
+```$xslt
+git clone git@github.com:angmieee/vue-cnode.git
+
+cd vue-cnode
+
+npm install // 或者 yarn
+ 
+npm run serve // 或者 yarn serve
+```
 
 ## 技术栈
 
