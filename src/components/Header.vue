@@ -18,10 +18,7 @@
                             <span>新手入门</span>
                         </router-link>
                     </li>
-                    <li><a href="#">API</a></li>
                     <li><a href="#">关于</a></li>
-                    <li><a href="#">注册</a></li>
-                    <li><a href="#">登录</a></li>
                 </ul>
             </div>
         </div>
@@ -39,7 +36,7 @@
         background: #444444;
         height: 50px;
         .navbar_wrapper {
-            width: 90%;
+            width: 75%;
             min-width: 960px;
             margin: 0 auto;
             padding: 5px;
