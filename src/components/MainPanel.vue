@@ -1,9 +1,6 @@
 <template>
     <div class="main_panel">
-        <div class="loading" v-if="isLoading">
-            <Loader></Loader>
-        </div>
-        <div class="topic_panel" v-else>
+        <div class="topic_panel">
             <ul>
                 <li  class="topic_tab">
                         <span>全部</span>
@@ -29,7 +26,7 @@
                             name: post.author.loginname
                         }
                     }">
-                        <span>{{ post.title }}</span>
+                        <span class="topic_title">{{ post.title }}</span>
                     </router-link>
                     <span class="last_reply">
                         {{ post.last_reply_at | formatDate }}
@@ -44,12 +41,13 @@
 </template>
 
 <script>
-    import Pagination from "../components/Pagination"
+    import Pagination from "../components/Pagination";
+    import {showLoading, hideLoading} from '../utils/loading';
+
     export default {
         name: "MainPanel",
         data(){
             return  {
-                isLoading:true,
                 posts: [],
                 currentPage: 1
             }
@@ -66,20 +64,23 @@
                     }
                 }).then((res)=>{
                     this.posts = res.data.data
-                    this.isLoading = false
+                    hideLoading()
                 }).catch((err)=>{
                     console.log(err)
                 })
             },
             renderList(page){
                 this.currentPage = page
-                this.isLoading = true
+                showLoading()
                 this.getPostsData()
             },
             // getAvatarsUrl(url) {
             //     const num = Math.floor(Math.random() * (4 - 1 + 1)) + 1
             //     return  url.includes('github') ? `/src/assets/avatars${num}.png` : url
             // }
+        },
+        beforeCreate() {
+          showLoading()
         },
         beforeMount() {
             this.getPostsData()
@@ -101,9 +102,10 @@
         .topic_panel {
             ul {
                 list-style: none;
-                width: 100%;
+                width: 75%;
                 max-width: 1344px;
                 margin: 0 auto;
+                box-shadow: 0 2px 12px 2px rgba(0,0,0,.1);
                 li {
                     &:not(:first-child) {
                         padding: 9px;
@@ -145,7 +147,7 @@
                         height: 30px;
                         width: 30px;
                         vertical-align: middle;
-                        border-radius: 3px;
+                        border-radius: 50%;
                     }
                     .reply_count_wrapper {
                         width: 70px;
@@ -192,6 +194,14 @@
                         float: right;
                         color: #778087;
                         font-size: 12px;
+                    }
+                    .topic_title {
+                        display: inline-block;
+                        width: 60%;
+                        vertical-align: middle;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
                 }
             }
