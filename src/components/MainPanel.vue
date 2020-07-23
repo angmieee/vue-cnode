@@ -3,11 +3,11 @@
         <div class="topic_panel">
             <ul>
                 <li  class="topic_tab">
-                        <span>全部</span>
-                        <span>精华</span>
-                        <span>分享</span>
-                        <span>问答</span>
-                        <span>招聘</span>
+                        <span @click="getData('all')" :class="{active: isActive == 'all'}">全部</span>
+                        <span @click="getData('good')" :class="{active: isActive == 'good'}">精华</span>
+                        <span @click="getData('share')" :class="{active: isActive == 'share'}">分享</span>
+                        <span @click="getData('ask')" :class="{active: isActive == 'ask'}">问答</span>
+                        <span @click="getData('job')" :class="{active: isActive == 'job'}">招聘</span>
                 </li>
                 <li class="topic_list" v-for="post in posts" :key="post.id">
                     <img :src="post.author.avatar_url" :alt="post.author.loginname">
@@ -48,18 +48,20 @@
         data(){
             return  {
                 posts: [],
-                currentPage: 1
+                currentPage: 1,
+                isActive: 'all'
             }
         },
         components:{
             Pagination
         },
         methods:{
-            getPostsData(){
+            getPostsData(type){
                 this.$http.get('https://cnodejs.org/api/v1/topics',{
                     params:{
                         page: this.currentPage,
-                        limit: 20
+                        limit: 20,
+                        tab: type
                     }
                 }).then((res)=>{
                     this.posts = res.data.data
@@ -67,6 +69,16 @@
                 }).catch((err)=>{
                     console.log(err)
                 })
+            },
+            getData(type) {
+                // 切换选项卡
+                this.isActive = type
+
+                this.$showLoading()
+                this.getPostsData(type)
+            },
+            toggle(tab) {
+                this.isActive = tab
             },
             renderList(page){
                 this.currentPage = page
@@ -134,8 +146,15 @@
                         line-height: 40px;
                         margin: 0 10px;
                         cursor: pointer;
+                        transition: all .3s;
                         &:hover {
                             color: #005580;
+                        }
+                        &.active {
+                            background-color: #80bd01;
+                            color: #fff;
+                            padding: 3px 4px;
+                            border-radius: 3px;
                         }
                     }
                 }

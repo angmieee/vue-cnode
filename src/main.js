@@ -2,8 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import Axios from 'axios'
 import router from './router/index'
-import { Button, Pagination, Dialog } from 'element-ui'
-import {showLoading, hideLoading} from './utils/loading';
+import { Button, Pagination, Dialog, Tabs } from 'element-ui'
+import { showLoading, hideLoading } from './utils/loading';
 
 Vue.prototype.$http = Axios
 Vue.config.productionTip = false
@@ -11,7 +11,8 @@ Vue.config.productionTip = false
 Vue.prototype.$ELEMENT = { size: 'normal', zIndex: 3000 };
 Vue.use(Pagination);
 Vue.use(Button);
-Vue.use(Dialog)
+Vue.use(Dialog);
+Vue.use(Tabs)
 
 Vue.prototype.$showLoading = showLoading
 Vue.prototype.$hideLoading = hideLoading
@@ -31,17 +32,17 @@ Vue.filter('formatDate', function (str) {
       } else if ((time / 1000 < 30)) {
         return '刚刚'
       } else if (time / 1000 < 60) {
-        return parseInt((time / 1000)) + '秒前'
+        return parseInt((time / 1000)) + ' 秒前'
       } else if ((time / 60000) < 60) {
-        return parseInt((time / 60000)) + '分钟前'
+        return parseInt((time / 60000)) + ' 分钟前'
       } else if ((time / 3600000) < 24) {
-        return parseInt(time / 3600000) + '小时前'
+        return parseInt(time / 3600000) + ' 小时前'
       } else if ((time / 86400000) < 31) {
-        return parseInt(time / 86400000) + '天前'
+        return parseInt(time / 86400000) + ' 天前'
       } else if ((time / 2592000000) < 12) {
-        return parseInt(time / 2592000000) + '月前'
+        return parseInt(time / 2592000000) + ' 个月前'
       } else {
-        return parseInt(time / 31536000000) + '年前'
+        return parseInt(time / 31536000000) + ' 年前'
       }
     }
 )
