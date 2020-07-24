@@ -3,7 +3,7 @@
         <div class="user_information">
             <section>
                 <div class="avatar_wrapper">
-                    <img :src="userinfo.avatar_url" alt="">
+                    <img :src="userinfo.avatar_url" :alt="userinfo.loginname">
                     <span>{{userinfo.loginname}}</span>
                 </div>
                 <p>{{userinfo.score}}积分</p>
